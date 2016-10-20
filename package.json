@@ -1,0 +1,27 @@
+{
+  "name": "vuegen",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "ava"
+  },
+  "bin": {
+    "vuegen": "./index.js"
+  },
+  "preferGlobal": true,
+  "keywords": [
+    "vue",
+    "generator",
+    "component"
+  ],
+  "author": "Ryan Walsh <ryan@thehatrack.net> (https://twitter.com/_rtwalsh)",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^1.2.2"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0"
+  }
+}
