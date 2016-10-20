@@ -18,6 +18,7 @@
   ],
   "author": "Ryan Walsh <ryan@thehatrack.net> (https://twitter.com/_rtwalsh)",
   "license": "ISC",
+  "repository": "https://github.com/r-walsh/vuegen",
   "dependencies": {
     "inquirer": "^1.2.2"
   },
