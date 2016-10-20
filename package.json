@@ -1,10 +1,9 @@
 {
   "name": "vuegen",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "A simple CLI for building .vue components",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
     "test": "ava"
   },
   "bin": {
