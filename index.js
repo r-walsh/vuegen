@@ -3,37 +3,50 @@
 const fs = require( "fs" );
 const inquirer = require( "inquirer" );
 
-const buildComponent = require( "./buildComponent" );
+const buildComponent = require( "./src/buildComponent" );
+const questions = require( "./src/questions" );
 
-const questions = [
-	{
-		  type: "input"
-		, name: "name"
-		, message: "Component name?"
-		, validate( value ) {
-			return value ? true : "Please enter a component name";
-		}
-	}
-	, {
-		  type: "list"
-		, name: "cssLang"
-		, message: "CSS language?"
-		, choices: [ "css", "stylus", "scss", "less" ]
-	}
-	, {
-		  type: "input"
-		, name: "templateLang"
-		, message: "Template language?"
-		, default: "HTML"
-	}
-	, {
-		  type: "confirm"
-		, name: "scopedCSS"
-		, message: "Should styles be component scoped?"
-		, default: true
-	}
-];
+function buildWithOptions( options ) {
+	const componentOptions = {
+		  componentName: options.componentName
+		, cssLang: options.cssLang || "css"
+		, indentCount: options.indentCount || 2
+		, indentType: options.indentType || "tab"
+		, outDir: options.outDir || "."
+		, quoteType: options.quoteType || "double"
+		, scopedCSS: typeof options.scopedCSS === "undefined" ? true : options.scopedCSS
+		, templateLang: options.templateLang || "HTML"
+	};
 
-inquirer.prompt( questions ).then( answers => fs.writeFile( `${ answers.name }.vue`, buildComponent( answers ) ) );
+	const template = buildComponent( componentOptions );
+	const path = `${ componentOptions.outDir }/${ componentOptions.componentName }.vue`;
+	
+	try {
+		fs.writeFile( path, template );
+		console.log( `Created ${ path }` );
+	} catch ( err ) {
+		console.error( `There was an error creating the file: ${ err }` );
+	}
+}
 
+try {
+	const options = require( `${ process.cwd() }/.vuegen.js` );
 
+	if ( process.argv[ 2 ] ) {
+		options.componentName = process.argv[ 2 ];
+		buildWithOptions( options );
+	} else {
+		inquirer
+			.prompt( [ questions.componentName ] )
+			.then( answers => {
+				options.componentName = answers.componentName;
+				buildWithOptions( options );
+			} );
+	}
+
+} catch ( err ) {
+	console.log( ".vuegen.js not found, prompting." );
+	inquirer
+		.prompt( Object.keys( questions ).map( q => questions[ q ] ) )
+		.then( answers => fs.writeFile( `${ answers.componentName }.vue`, buildComponent( answers ) ) );
+}

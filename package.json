@@ -4,7 +4,9 @@
   "description": "A simple CLI for building .vue components",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "test:coverage": "nyc ava",
+    "lint": "eslint \"./**/*.js\""
   },
   "bin": {
     "vuegen": "./index.js"
@@ -22,6 +24,9 @@
     "inquirer": "^1.2.2"
   },
   "devDependencies": {
-    "ava": "^0.16.0"
+    "ava": "^0.16.0",
+    "eslint": "^3.8.1",
+    "eslint-config-devmountain": "^1.2.2",
+    "nyc": "^8.3.2"
   }
 }

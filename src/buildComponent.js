@@ -1,11 +1,13 @@
-function buildComponent( { name, cssLang, templateLang, scopedCSS } ) {
+function buildComponent( { componentName, cssLang, indentCount, indentType, quoteType, scopedCSS, templateLang } ) {
+	const quote = quoteType === "double" ? "\"" : "'";
+
 	return `<template${ templateLang === "HTML" ? "" : ` lang="${ templateLang }"` }>
 
 </template>
 
 <script>
 export default {
-	name: "${ name }"
+${ indentType === "tab" ? "\t" : " ".repeat( indentCount ) }name: ${ quote + componentName + quote }
 }
 </script>
 
