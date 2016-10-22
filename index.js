@@ -9,7 +9,7 @@ const questions = require( "./src/questions" );
 function buildWithOptions( options ) {
 
 	const template = buildComponent( options );
-	const path = `${ options.outDir }/${ options.componentName }.vue`;
+	const path = `${ options.outDir || "./" }${ options.componentName }.vue`;
 
 	try {
 		fs.writeFile( path, template );
@@ -40,6 +40,11 @@ try {
 		.prompt( Object.keys( questions ).map( q => questions[ q ] ) )
 		.then( answers => {
 			const path = process.argv[ 2 ] ? `${ process.argv[ 2 ] }${ answers.componentName }.vue` : `${ answers.componentName }.vue`;
-			fs.writeFile( path, buildComponent( answers ) )
+			try {
+				fs.writeFile( path, buildComponent( answers ) );
+				console.log( `Created ${ path }` );
+			} catch ( err ) {
+				console.error( `There was an error creating the file: ${ err }` );
+			}
 		} );
 }
