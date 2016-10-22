@@ -1,4 +1,12 @@
-function buildComponent( { componentName, cssLang, indentCount, indentType, quoteType, scopedCSS, templateLang } ) {
+function buildComponent( {
+	  componentName
+	, cssLang = "css"
+	, indentCount = 2
+	, indentType = "tab"
+	, quoteType = "double"
+	, scopedCSS = true
+	, templateLang = "HTML" } ) {
+
 	const quote = quoteType === "double" ? "\"" : "'";
 
 	return `<template${ templateLang === "HTML" ? "" : ` lang="${ templateLang }"` }>

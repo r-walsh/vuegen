@@ -6,6 +6,7 @@
   "scripts": {
     "test": "ava",
     "test:coverage": "nyc ava",
+    "report": "nyc report --reporter=html",
     "lint": "eslint \"./**/*.js\""
   },
   "bin": {

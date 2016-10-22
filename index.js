@@ -7,20 +7,10 @@ const buildComponent = require( "./src/buildComponent" );
 const questions = require( "./src/questions" );
 
 function buildWithOptions( options ) {
-	const componentOptions = {
-		  componentName: options.componentName
-		, cssLang: options.cssLang || "css"
-		, indentCount: options.indentCount || 2
-		, indentType: options.indentType || "tab"
-		, outDir: options.outDir || "."
-		, quoteType: options.quoteType || "double"
-		, scopedCSS: typeof options.scopedCSS === "undefined" ? true : options.scopedCSS
-		, templateLang: options.templateLang || "HTML"
-	};
 
-	const template = buildComponent( componentOptions );
-	const path = `${ componentOptions.outDir }/${ componentOptions.componentName }.vue`;
-	
+	const template = buildComponent( options );
+	const path = `${ options.outDir }/${ options.componentName }.vue`;
+
 	try {
 		fs.writeFile( path, template );
 		console.log( `Created ${ path }` );
@@ -48,5 +38,8 @@ try {
 	console.log( ".vuegen.js not found, prompting." );
 	inquirer
 		.prompt( Object.keys( questions ).map( q => questions[ q ] ) )
-		.then( answers => fs.writeFile( `${ answers.componentName }.vue`, buildComponent( answers ) ) );
+		.then( answers => {
+			const path = process.argv[ 2 ] ? `${ process.argv[ 2 ] }${ answers.componentName }.vue` : `${ answers.componentName }.vue`;
+			fs.writeFile( path, buildComponent( answers ) )
+		} );
 }
