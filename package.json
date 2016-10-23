@@ -1,6 +1,6 @@
 {
   "name": "vuegen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple CLI for building .vue components",
   "main": "index.js",
   "scripts": {
