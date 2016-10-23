@@ -220,6 +220,58 @@ export default {
 	t.is( buildComponent( options ), expected );
 } );
 
+test( "buildComponent allows for template quotes", t => {
+	const options = {
+		  componentName: "Test"
+		, cssLang: "stylus"
+		, quoteType: "template"
+		, scopedCSS: true
+		, templateLang: "HTML"
+	};
+	const expected = `<template>
+
+</template>
+
+<script>
+export default {
+	name: \`Test\`
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+`;
+
+	t.is( buildComponent( options ), expected );
+} );
+
+test( "buildComponent defaults to double quotes", t => {
+	const options = {
+		  componentName: "Test"
+		, cssLang: "stylus"
+		, quoteType: "totally not valid"
+		, scopedCSS: true
+		, templateLang: "HTML"
+	};
+	const expected = `<template>
+
+</template>
+
+<script>
+export default {
+	name: "Test"
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+`;
+
+	t.is( buildComponent( options ), expected );
+} );
+
 test( "buildComponent allows for spaces", t => {
 	const options = {
 		  componentName: "Test"

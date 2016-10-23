@@ -24,7 +24,7 @@ Desired indentation type. Options are `"space"` and `"tab"`. Default `"tab"`.
 Destination directory for created component. Must end in a `"/"`. Default `"./"`.
 
 `quoteType`
-Desired quote type. Options are `"single"` and `"double"`. Default `"double"`.
+Desired quote type. Options are `"single"`, `"double"`, and `"template"`. Default `"double"`.
 
 `scopedCSS`
 Whether or not the `scoped` attribute should be added to style tag. Default `true`.

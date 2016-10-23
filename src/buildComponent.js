@@ -7,7 +7,20 @@ function buildComponent( {
 	, scopedCSS = true
 	, templateLang = "HTML" } ) {
 
-	const quote = quoteType === "double" ? "\"" : "'";
+	let quote;
+	switch ( quoteType ) {
+		case "double":
+			quote = "\"";
+			break;
+		case "single":
+			quote = "'";
+			break;
+		case "template":
+			quote = "`";
+			break;
+		default:
+			quote = "\"";
+	}
 
 	return `<template${ templateLang === "HTML" ? "" : ` lang="${ templateLang }"` }>
 
