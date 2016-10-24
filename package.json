@@ -1,6 +1,6 @@
 {
   "name": "vuegen",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple CLI for building .vue components",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,9 @@
   },
   "bin": {
     "vuegen": "./index.js"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "preferGlobal": true,
   "keywords": [
