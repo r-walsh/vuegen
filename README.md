@@ -29,6 +29,9 @@ Desired quote type. Options are `"single"`, `"double"`, and `"template"`. Defaul
 `scopedCSS`
 Whether or not the `scoped` attribute should be added to style tag. Default `true`.
 
+`semiColons`
+Whether or not semi-colons should be included. Default `true`.
+
 `templateLang`
 The language in which you are writing templates in. Default `"HTML"`.
 
@@ -41,6 +44,7 @@ module.exports = {
     , outDir: "./"
     , quoteType: "double"
     , scopedCSS: true
+    , semiColons: true
     , templateLang: "HTML"
 }
 ```
@@ -63,7 +67,7 @@ Example outputs:
 <script>
 export default {
 	name: "Login"
-}
+};
 </script>
 
 <style scoped>
@@ -86,7 +90,7 @@ export default {
 <script>
 export default {
 	name: "Header"
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -102,6 +106,7 @@ export default {
 	, indentType: "space"
 	, quoteType: "single"
 	, scopedCSS: true
+	, semiColons: false
 };
 
 */

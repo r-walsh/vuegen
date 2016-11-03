@@ -5,6 +5,7 @@ function buildComponent( {
 	, indentType = "tab"
 	, quoteType = "double"
 	, scopedCSS = true
+	, semiColons = true
 	, templateLang = "HTML" } ) {
 
 	let quote;
@@ -22,14 +23,14 @@ function buildComponent( {
 			quote = "\"";
 	}
 
-	return `<template${ templateLang === "HTML" ? "" : ` lang="${ templateLang }"` }>
+	return `<template${ templateLang.toUpperCase() === "HTML" ? "" : ` lang="${ templateLang }"` }>
 
 </template>
 
 <script>
 export default {
 ${ indentType === "tab" ? "\t" : " ".repeat( indentCount ) }name: ${ quote + componentName + quote }
-}
+}${ semiColons ? ";" : "" }
 </script>
 
 <style${ cssLang === "css" ? "" : ` lang="${ cssLang }"` }${ scopedCSS ? " scoped" : "" }>

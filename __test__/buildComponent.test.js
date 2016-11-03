@@ -9,7 +9,7 @@ test( "buildComponent provides default options", t => {
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style scoped>
@@ -34,7 +34,7 @@ test( "buildComponent leaves off the 'lang' attribute from <template> when passe
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style>
@@ -58,7 +58,7 @@ test( "buildComponent supports adding any given template language", t => {
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style>
@@ -83,7 +83,7 @@ test( "buildComponent takes in a 'name' and assigns that to the component's JS",
 <script>
 export default {
 	name: "ComponentName"
-}
+};
 </script>
 
 <style>
@@ -108,7 +108,7 @@ test( "buildComponent leaves off 'lang' attribute on styles when passed 'css'", 
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style>
@@ -133,7 +133,7 @@ test( "buildComponent allows for a 'lang' to be added", t => {
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style lang="stylus">
@@ -158,7 +158,7 @@ test( "buildComponent allows for styles to be scoped", t => {
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style scoped>
@@ -183,7 +183,7 @@ test( "buildComponent allows for styles to have a set lang and be scoped", t => 
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -209,7 +209,7 @@ test( "buildComponent allows for single quotes", t => {
 <script>
 export default {
 	name: 'Test'
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -235,7 +235,7 @@ test( "buildComponent allows for template quotes", t => {
 <script>
 export default {
 	name: \`Test\`
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -261,7 +261,7 @@ test( "buildComponent defaults to double quotes", t => {
 <script>
 export default {
 	name: "Test"
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -287,7 +287,7 @@ test( "buildComponent allows for spaces", t => {
 <script>
 export default {
   name: "Test"
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -307,6 +307,35 @@ test( "buildComponent allows setting number of spaces", t => {
 		, scopedCSS: true
 		, templateLang: "HTML"
 	};
+	const expected = `<template>
+
+</template>
+
+<script>
+export default {
+    name: "Test"
+};
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+`;
+
+	t.is( buildComponent( options ), expected );
+} );
+
+test( "buildComponent allows for leaving out semi-colons", t => {
+	const options = {
+		componentName: "Test"
+		, cssLang: "stylus"
+		, indentCount: 4
+		, indentType: "space"
+		, scopedCSS: true
+		, semiColons: false
+		, templateLang: "HTML"
+	};
+
 	const expected = `<template>
 
 </template>
